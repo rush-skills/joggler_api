@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Upmin::Engine => '/admin'
   namespace :api do
     namespace :v1 do
 

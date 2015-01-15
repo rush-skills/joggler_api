@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing this API, static page</title>
+    <style type="text/css" media="screen">
+      html, body {
+        background-color: #4B7399;
+        font-family: Verdana, Helvetica, Arial;
+        font-size: 14px;
+      }
+      a { color: #0000FF; }
+
+      #container {
+        width: 75%;
+        margin: 0 auto;
+        background-color: #FFF;
+        padding: 20px 40px;
+        border: solid 1px black;
+        margin-top: 20px;
+      }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(function() {
+        function addUser(user) {
+          $('#users').append('<div class="box"><li>' +'Name: '+ user.name + '<br>Email: ' + user.email + '<br>ID: ' + user.id + '<br>UID: ' + user.uid + '<br>Provider: ' + user.provider + '</ul></div>');
+        }
+
+        $('#new_user').submit(function(e) {
+          $.post('/api/v1/users', $(this).serialize(), addUser);
+          this.reset();
+          e.preventDefault();
+        });
+
+        $.getJSON('/api/v1/users', function(users) {
+          $.each(users, function() { addUser(this); });
+        });
+      });
+    </script>
+  <body>
+    <div id="container">
+      <h1>Users</h1>
+      <form id="new_user">
+        <h3>Name
+        <input type="text" name="user[name]" id="user_name"></h3>
+        <h3>Email
+        <input type="text" name="user[email]" id="user_email"></h3>
+        <br>
+        <input type="submit" value="Add">
+      </form>
+      <ul id="users"></ul>
+    </div>
+  </body>
+</html>

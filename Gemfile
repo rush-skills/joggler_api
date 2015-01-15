@@ -9,12 +9,12 @@ gem 'spring', :group => :development
 
 
 gem 'sqlite3'
-
+gem 'upmin-admin'
 group :development do
 	#personal easy developments gems
 	gem 'pry'
 	gem 'annotate' 
-	gem 'better_errors'
+	#gem 'better_errors'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
