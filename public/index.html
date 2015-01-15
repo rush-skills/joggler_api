@@ -21,13 +21,23 @@
     </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
+      var access_token = "ed1a611f6a7416ce886c9d13913c7f70";
       $(function() {
         function addUser(user) {
           $('#users').append('<div class="box"><li>' +'Name: '+ user.name + '<br>Email: ' + user.email + '<br>ID: ' + user.id + '<br>UID: ' + user.uid + '<br>Provider: ' + user.provider + '</ul></div>');
         }
 
         $('#new_user').submit(function(e) {
-          $.post('/api/v1/users', $(this).serialize(), addUser);
+          $.ajax({
+            type: "POST",
+            url: '/api/v1/users',
+            beforeSend : function( xhr ) {
+                xhr.setRequestHeader( "Authorization",'Token token="'+access_token+'"' );
+            },
+            data: $(this).serialize(),
+            success: addUser
+          });
+          //$.post('/api/v1/users', $(this).serialize(), addUser);
           this.reset();
           e.preventDefault();
         });

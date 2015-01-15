@@ -1,6 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
+      # skip_before_filter :restrict_access, :only => [:index]
       # GET /users
       # GET /users.json
       def index
@@ -23,7 +24,7 @@ module Api
         @user = User.new(user_params)
 
         if @user.save
-          render json: @user, status: :created, location: @user
+          render json: @user, status: :created, location: "/api/v1/users/"+@user.id.to_s
         else
           render json: @user.errors, status: :unprocessable_entity
         end
