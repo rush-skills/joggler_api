@@ -10,6 +10,7 @@ gem 'spring', :group => :development
 
 gem 'sqlite3'
 gem 'upmin-admin'
+gem 'httparty'
 group :development do
 	#personal easy developments gems
 	gem 'pry'

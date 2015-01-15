@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
   namespace :api do
     namespace :v1 do
-
+      post 'auth/verify' => 'omniauth_verifications#verify_token'
       resources :songs, except: [:new, :edit]
       resources :playlists, except: [:new, :edit]
       resources :users, except: [:new, :edit]
