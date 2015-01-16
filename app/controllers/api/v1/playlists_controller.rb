@@ -23,7 +23,7 @@ module Api
         @playlist = Playlist.new(playlist_params)
 
         if @playlist.save
-          render json: @playlist, status: :created, location: @playlist
+          render json: @playlist, status: :created, location: "/api/v1/playlists/"+@playlist.id.to_s
         else
           render json: @playlist.errors, status: :unprocessable_entity
         end

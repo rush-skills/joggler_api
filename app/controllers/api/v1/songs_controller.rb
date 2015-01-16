@@ -23,7 +23,7 @@ module Api
         @song = Song.new(song_params)
 
         if @song.save
-          render json: @song, status: :created, location: @song
+          render json: @song, status: :created, location: "/api/v1/songs/"+@song.id.to_s
         else
           render json: @song.errors, status: :unprocessable_entity
         end
